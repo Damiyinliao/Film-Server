@@ -7,7 +7,7 @@ import { FilmEntity } from './entities/film.entity';
 @Module({
   controllers: [FilmsController],
   providers: [FilmsService],
-  // 使用typeorm将FilmEntity导入
+  // 使用typeorm将FilmEntity导入，会自动映射到mongodb上
   imports:[TypeOrmModule.forFeature([FilmEntity])]
 })
 export class FilmsModule {}

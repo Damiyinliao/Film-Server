@@ -1,12 +1,24 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
-import { IsNumber, IsString } from "class-validator/types/decorator/decorators";
+import { IsInt, IsNotEmpty } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CreateFilmDto {
+    @ApiProperty({
+        description: 'id'
+    })
+    id: string
     // 参数的接口注释
     @ApiProperty({
         required: true,
-        description: '胶片名称'
+        description: '胶片名称(英文缩写)'
+    })
+    @IsNotEmpty()
+    @IsString()
+    film_id: string;
+
+    @ApiProperty({
+        required: true,
+        description: '胶片名称(中文)'
     })
     @IsNotEmpty()
     @IsString()
@@ -14,7 +26,7 @@ export class CreateFilmDto {
 
     @ApiProperty({
         required: true,
-        description: '胶片英文名'
+        description: '胶片英文名(英文)'
     })
     @IsString()
     film_ename: string; 
@@ -44,7 +56,8 @@ export class CreateFilmDto {
         required: true,
         description: '胶片感光度'
     })
-    @IsNumber()
+    @IsNotEmpty()
+    @IsInt()
     film_iso: number;   
 
     @ApiProperty({

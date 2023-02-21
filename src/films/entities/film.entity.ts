@@ -1,5 +1,5 @@
 import { Column, Entity, ObjectID, ObjectIdColumn } from "typeorm";
-
+// Film胶片的实体 
 @Entity()
 export class FilmEntity {
     @ObjectIdColumn()
@@ -33,6 +33,6 @@ export class FilmEntity {
     @Column()
     film_use_case: string;// 胶片使用场景
     @Column()
-    film_facts: string; // 胶片的事实
+    film_desc: string; // 胶片的事实
 }
 
