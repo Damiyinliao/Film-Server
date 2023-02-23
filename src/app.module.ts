@@ -14,6 +14,9 @@ import { SimulationModule } from './simulation/simulation.module';
 import { SimulationEntity } from './simulation/entities/simulation.entity';
 import { CardModule } from './card/card.module';
 import { UserModule } from './user/user.module';
+import { UserEntity } from './user/entities/user.entity';
+import { CardEntity } from './card/entities/card.entity';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     FilmsModule,
@@ -27,7 +30,7 @@ import { UserModule } from './user/user.module';
       database: 'filmgallery',
       // 导入entity
       //autoLoadEntities: true,
-      entities:[FilmEntity,SimulationEntity],
+      entities:[FilmEntity,SimulationEntity,UserEntity,CardEntity],
       // 开启同步
       synchronize: true
     }),
@@ -48,7 +51,8 @@ import { UserModule } from './user/user.module';
     }),
     SimulationModule,
     CardModule,
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

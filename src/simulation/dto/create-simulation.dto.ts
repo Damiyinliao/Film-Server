@@ -16,7 +16,6 @@ export class CreateSimulationDto {
 
     @ApiProperty({
         description: '胶片模拟中文名称',
-
     })
     @IsString()
     sim_cname: string;               

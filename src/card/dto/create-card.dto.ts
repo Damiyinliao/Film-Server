@@ -3,11 +3,6 @@ import { IsArray, IsString } from "class-validator";
 
 export class CreateCardDto {
 
-    // @ApiProperty({
-
-    // })
-    // card_id: string;            // 卡片id
-
     @ApiProperty({
         required: true,
         description: '用户id'
@@ -19,7 +14,7 @@ export class CreateCardDto {
         description: '用户头像地址'
     })
     @IsString()
-    user_img_url: string;
+    user_avatar: string;
 
     @ApiProperty({
         description: '图片地址'
@@ -106,6 +101,10 @@ export class CreateCardDto {
         description: '曝光补偿(exposure_compensation)'
     })
     @IsString()
-    ev: string;                 
-
+    ev: string;   
+    @ApiProperty({
+        description: '拍摄设备'
+    })              
+    @IsString()
+    equipment: string;          
 }
