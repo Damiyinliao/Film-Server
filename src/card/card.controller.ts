@@ -11,7 +11,7 @@ export class CardController {
   create(@Body() createCardDto: CreateCardDto) {
     return this.cardService.create(createCardDto);
   }
-
+  // 获取所有Card
   @Get()
   findAll() {
     return this.cardService.findAll();
@@ -19,16 +19,16 @@ export class CardController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cardService.findOne(+id);
+    return this.cardService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {
-    return this.cardService.update(+id, updateCardDto);
+  update(@Param('id') id: string, @Body() UpdateCardDto) {
+    return this.cardService.update(id, UpdateCardDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cardService.remove(+id);
+    return this.cardService.remove(id);
   }
 }

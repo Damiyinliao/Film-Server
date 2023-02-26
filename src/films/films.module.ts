@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
 import { FilmsService } from './films.service';
 import { FilmsController } from './films.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { FilmEntity } from './entities/film.entity';
+import { Film, FilmSchema } from './schemas/film.schema';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   controllers: [FilmsController],
   providers: [FilmsService],
-  // 使用typeorm将FilmEntity导入，会自动映射到mongodb上
-  imports:[TypeOrmModule.forFeature([FilmEntity])]
+  imports:[MongooseModule.forFeature([{name: Film.name, schema:FilmSchema}])]
 })
 export class FilmsModule {}

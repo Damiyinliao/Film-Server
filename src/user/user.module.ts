@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity';
-import { AuthModule } from 'src/auth/auth.module';
+import { ToolsService } from 'src/utils/tools.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { User, UserSchema } from './schema/user.schema';
 
 @Module({
   controllers: [UserController],
-  providers: [UserService],
-  imports: [TypeOrmModule.forFeature([UserEntity])],
+  providers: [UserService, ToolsService], // 在要使用的module引入tools
+  imports: [MongooseModule.forFeature([{name: User.name, schema:UserSchema}])],
   exports: [UserService]
 })
 export class UserModule {}

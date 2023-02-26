@@ -1,38 +1,40 @@
-import { Column, Entity, ObjectID, ObjectIdColumn } from "typeorm";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
+
+export type FilmDocument = HydratedDocument<Film>
 // Film胶片的实体 
-@Entity()
-export class FilmEntity {
-    @ObjectIdColumn()
-    id: ObjectID;
-    @Column()
+@Schema()
+export class Film {
+    @Prop()
     film_id: string;    // 胶片id
-    @Column()
+    @Prop()
     film_name: string;  // 胶片名字
-    @Column()
+    @Prop()
     film_ename: string; // 胶片英文名
-    @Column()
+    @Prop()
     film_type: string;  // 胶片类型
-    @Column()
+    @Prop()
     film_icon: string;  // 胶片图标
-    @Column()
+    @Prop()
     film_brand: string; // 胶片品牌
-    @Column()
+    @Prop()
     film_iso: number;   // 胶片感光度
-    @Column()
+    @Prop()
     film_country: string;// 胶片产地
-    @Column()
+    @Prop()
     film_formats: string;// 胶片格式
-    @Column()
+    @Prop()
     film_process: string;// 胶片冲洗工艺
-    @Column()
+    @Prop()
     film_grain: string; // 胶片颗粒度
-    @Column()
+    @Prop()
     film_contrast: string;// 胶片的对比度
-    @Column()
+    @Prop()
     film_color_tone: string;// 胶片色调
-    @Column()
+    @Prop()
     film_use_case: string;// 胶片使用场景
-    @Column()
+    @Prop()
     film_desc: string; // 胶片的事实
 }
 
+export const FilmSchema = SchemaFactory.createForClass(Film);

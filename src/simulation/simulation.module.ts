@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { SimulationService } from './simulation.service';
 import { SimulationController } from './simulation.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { SimulationEntity } from './entities/simulation.entity';
+import { Simulation, SimulationSchema } from './schemas/simulation.schema';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   controllers: [SimulationController],
   providers: [SimulationService],
-  imports: [TypeOrmModule.forFeature([SimulationEntity])]
+  imports: [MongooseModule.forFeature([{name: Simulation.name, schema:SimulationSchema}])]
 })
 export class SimulationModule {}

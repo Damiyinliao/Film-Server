@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy';
 import { LocalStrategy } from './local.strategy';
+import { AuthController } from './auth.controller';
 
 @Module({
   providers: [AuthService, JwtStrategy, LocalStrategy],
@@ -18,7 +19,8 @@ import { LocalStrategy } from './local.strategy';
       signOptions: { expiresIn: '8h' },  // token 过期时效
     })    
   ],
-  exports: [AuthService]
+  exports: [AuthService],
+  controllers: [AuthController]
 })
 export class AuthModule {
 

@@ -1,39 +1,21 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import * as winston from 'winston';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FilmsModule } from './films/films.module';
-import { FilmEntity } from './films/entities/film.entity';
 import { WinstonModule, utilities as nestWinstonModuleUtilities } from 'nest-winston';
 import { join } from 'path';
 import * as moment from 'moment';
 import { LoggerMiddlewave } from './common/middleware/logger.middleware';
 import { SimulationModule } from './simulation/simulation.module';
-
-import { SimulationEntity } from './simulation/entities/simulation.entity';
 import { CardModule } from './card/card.module';
 import { UserModule } from './user/user.module';
-import { UserEntity } from './user/entities/user.entity';
-import { CardEntity } from './card/entities/card.entity';
 import { AuthModule } from './auth/auth.module';
+import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
-    FilmsModule,
-    // 连接数据库
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      username: 'root',
-      password: '123456',
-      host: 'localhost',
-      port: 27017,
-      database: 'filmgallery',
-      // 导入entity
-      //autoLoadEntities: true,
-      entities:[FilmEntity,SimulationEntity,UserEntity,CardEntity],
-      // 开启同步
-      synchronize: true
-    }),
+    // 停止使用TypeOrm改使用Mongoose
+    MongooseModule.forRoot('mongodb://localhost:27017/filmgallery'),
     // 开启日志打印
     WinstonModule.forRoot({
       transports: [
@@ -52,6 +34,7 @@ import { AuthModule } from './auth/auth.module';
     SimulationModule,
     CardModule,
     UserModule,
+    FilmsModule,
     AuthModule
   ],
   controllers: [AppController],

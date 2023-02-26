@@ -4,6 +4,11 @@ import { IsArray, IsString } from "class-validator";
 export class CreateCardDto {
 
     @ApiProperty({
+        description: 'card的id'
+    })
+    card_id: string;
+
+    @ApiProperty({
         required: true,
         description: '用户id'
     })
@@ -15,12 +20,6 @@ export class CreateCardDto {
     })
     @IsString()
     user_avatar: string;
-
-    @ApiProperty({
-        description: '图片地址'
-    })
-    @IsArray()
-    photos: {url: string}[]
 
     @ApiProperty({
         description: '胶片食谱标题'
@@ -37,7 +36,12 @@ export class CreateCardDto {
     @ApiProperty({
         description: '动态范围'
     })
-    dynamic_range: string;      
+    dynamic_range: string;  
+    
+    @ApiProperty({
+        description: 'D范围优先级'
+    })    
+    drp: string; 
 
     @ApiProperty({
         description: '高光'
@@ -106,5 +110,16 @@ export class CreateCardDto {
         description: '拍摄设备'
     })              
     @IsString()
-    equipment: string;          
+    equipment: string;
+
+    @ApiProperty({
+        description: '创建时间'
+    })
+    createTime: Date;
+    
+    @ApiProperty({
+        description: '图片地址'
+    })
+    @IsArray()
+    photos: {url: string}[]          
 }

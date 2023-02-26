@@ -16,60 +16,65 @@ export class CreateUserDto {
     @IsNotEmpty({
         message: '请输入密码'
     })
-    password:string;
+    password?:string;
 
     @ApiProperty({
         description: '用户角色'
     })
-    role: string;
+    role?: string;
 
     @ApiProperty({
         description: '用户id'
     })
-    user_id: string;
+    user_id?: string;
 
     @ApiProperty({
         description: '用户头像地址'
     })
-    avator: string;
+    avator?: string;
 
     @ApiProperty({
         description: '用户昵称'
     })
-    nickname: string;
+    nickname?: string;
 
     @ApiProperty({
         description: '用户描述'
     })
-    desc: string;
+    desc?: string;
 
     @ApiProperty({
         description: '用户标签'
     })
-    tag: string;
+    tag?: string;
 
     @ApiProperty({
         description: '关注的数量'
     })
-    follows: number;
+    follows?: number;
 
     @ApiProperty({
         description: '粉丝数量'
     })
-    fans: number;
+    fans?: number;
 
     @ApiProperty({
         description: '账号创建时间'
     })
-    createTime: Date;
+    createTime?: Date;
 
     @ApiProperty({
-        description: '收藏的Recipe'
+        description: '收藏的Card的id'
     })
-    RecipesId: {recipe_id: string}[]
+    RecipesId?: {_id: string}[]
 
     @ApiProperty({
-        description: '喜欢的Recipe'
+        description: '喜欢的Card的id'
     })
-    LikesId: {like_id: string}[]
+    LikesId?: {_id: string}[]
+
+    @ApiProperty({
+        description: '验证码'
+    })
+    captcha?: string;
 }

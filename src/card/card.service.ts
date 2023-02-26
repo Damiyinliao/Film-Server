@@ -1,34 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
-import { CardEntity } from './entities/card.entity';
+import { Card, CardDocument } from './schemas/card.schema';
 
 @Injectable()
 export class CardService {
-
-  constructor(@InjectRepository(CardEntity)private CardRepo:Repository<CardEntity>){}
-
-  async create(createCardDto: CreateCardDto) {
-    let newCard = this.CardRepo.create(createCardDto);
-    return await this.CardRepo.save(newCard);
-    // return 'This action adds a new card';
+  constructor(@InjectModel(Card.name) private cardModel: Model<CardDocument>){}
+  // 新增card
+  async create(createCardDto: CreateCardDto): Promise<Card> {
+    const createCard = new this.cardModel(createCardDto);
+    return createCard.save();
+  }
+  // 查找所有card
+  async findAll(): Promise<Card[]>{
+    return this.cardModel.find().exec();
+  }
+  // 查找某一个card
+  async findOne(id: string): Promise<Card> {
+    return this.cardModel.findOne( {id} );
+  }
+  // 更新card
+  async update(id: string, updateCardDto: UpdateCardDto): Promise<any>{    
+    console.log(id,updateCardDto);
+    let result =  this.cardModel.findOneAndUpdate({_id: id}, updateCardDto,{ new: true }).exec();
+    return result;    
   }
 
-  findAll() {
-    return `This action returns all card`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} card`;
-  }
-
-  update(id: number, updateCardDto: UpdateCardDto) {
-    return `This action updates a #${id} card`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} card`;
+  async remove(id: string): Promise<any> {
+    return this.cardModel.deleteOne({_id: id});
   }
 }

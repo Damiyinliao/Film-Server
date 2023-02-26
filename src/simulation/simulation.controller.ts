@@ -19,16 +19,16 @@ export class SimulationController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.simulationService.findOne(+id);
+    return this.simulationService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSimulationDto: UpdateSimulationDto) {
-    return this.simulationService.update(+id, updateSimulationDto);
+    return this.simulationService.update(id, updateSimulationDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.simulationService.remove(+id);
+    return this.simulationService.remove(id);
   }
 }
