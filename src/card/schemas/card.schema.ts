@@ -10,7 +10,9 @@ export class Card {
     @Prop({
         required: true
     })
-    user_id: string;            // 卡片所属用户id
+    username: string;            // 卡片所属用户id
+    @Prop()
+    nickname: string            // 卡片所属用户的id
     @Prop()
     user_avatar: string;        // 卡片所属用户头像
     @Prop()
@@ -40,7 +42,7 @@ export class Card {
     @Prop()
     white_balance?: string;      //白平衡
     @Prop()
-    iso?: string;                //iso
+    iso?: number;                //iso
     @Prop()
     ev?: string;                 //曝光补偿  exposure_compensation
     @Prop()
@@ -50,7 +52,9 @@ export class Card {
     @Prop({
         type: [{ url: { type: String } }]
     })
-    photos?: { url: string }[];
+    photos?: { url: string }[];  //照片
+    @Prop()
+    like: number                //喜欢数
 }
 
 export const CardSchema = SchemaFactory.createForClass(Card);

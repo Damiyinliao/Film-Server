@@ -14,7 +14,7 @@ export class UserService {
     let { username, password } = createUser;
     const saltOrRounds = 10;
     const hashPassword = bcryptjs.hashSync(password, saltOrRounds);     // 密码加密
-    let user = await this.userModel.findOne({ where: { username } })
+    let user = await this.userModel.findOne( { username } )
     if (user) {
       throw new HttpException('用户已经存在', HttpStatus.BAD_REQUEST);
     }
@@ -32,13 +32,14 @@ export class UserService {
   }
   // 获取用户信息
   async findOne(username: string): Promise<User> {
-    return await this.userModel.findOne({ where: { username } });
+    return await this.userModel.findOne( { username } );
   }
   // 返回用户信息
   async getUserInfo(username: string): Promise<any> {
-    let user = await this.findOne(username);
-    let { password, ...result } = user;
-    return result;
+    let user = await this.userModel.findOne({username});
+    user.password = null;
+    console.log(user);
+    return user;
   }
   // 更新账户信息
   async update(id: string, updateUserDto: UpdateUserDto): Promise<any> {

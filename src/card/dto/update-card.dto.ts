@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsArray, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsString } from 'class-validator';
 import { CreateCardDto } from './create-card.dto';
 
 export class UpdateCardDto extends PartialType(CreateCardDto) {
@@ -99,7 +99,7 @@ export class UpdateCardDto extends PartialType(CreateCardDto) {
     @ApiProperty({
         description: 'iso'
     })
-    iso: string;                
+    iso: number;                
 
     @ApiProperty({
         description: '曝光补偿(exposure_compensation)'
@@ -122,4 +122,10 @@ export class UpdateCardDto extends PartialType(CreateCardDto) {
     })
     @IsArray()
     photos: {url: string}[]       
+        
+    @ApiProperty({
+        description: '喜欢数'
+    })
+    @IsNumber()
+    like: number
 }

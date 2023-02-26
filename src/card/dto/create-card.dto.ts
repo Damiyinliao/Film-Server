@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsString } from "class-validator";
+import { IsArray, IsNumber, IsString } from "class-validator";
 
 export class CreateCardDto {
 
@@ -10,11 +10,14 @@ export class CreateCardDto {
 
     @ApiProperty({
         required: true,
-        description: '用户id'
+        description: '卡片所属用户id'
     })
     @IsString()
-    user_id: string;           
-
+    username: string;   
+    @ApiProperty({
+        description: '卡片所属用户昵称'
+    })        
+    nickanme?: string;
     @ApiProperty({
         description: '用户头像地址'
     })
@@ -99,7 +102,7 @@ export class CreateCardDto {
     @ApiProperty({
         description: 'iso'
     })
-    iso: string;                
+    iso: number;                
 
     @ApiProperty({
         description: '曝光补偿(exposure_compensation)'
@@ -121,5 +124,11 @@ export class CreateCardDto {
         description: '图片地址'
     })
     @IsArray()
-    photos: {url: string}[]          
+    photos: {url: string}[]      
+    
+    @ApiProperty({
+        description: '喜欢数'
+    })
+    @IsNumber()
+    like: number
 }

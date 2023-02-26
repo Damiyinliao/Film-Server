@@ -16,7 +16,7 @@ export class CardController {
   findAll() {
     return this.cardService.findAll();
   }
-
+  // 获取单个Card信息
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.cardService.findOne(id);
