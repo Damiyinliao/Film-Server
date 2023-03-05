@@ -16,7 +16,7 @@ export class Card {
     @Prop()
     user_avatar: string;        // 卡片所属用户头像
     @Prop()
-    film_simulation: "CC";      // 胶片模拟名称
+    film_simulation?: string;      // 胶片模拟名称
     @Prop()
     dynamic_range?: string;      // 动态范围
     @Prop()
@@ -52,9 +52,15 @@ export class Card {
     @Prop({
         type: [{ url: { type: String } }]
     })
-    photos?: { url: string }[];  //照片
+    photos: { url: string }[]; //照片
     @Prop()
     like: number                //喜欢数
+    @Prop()
+    isSimulation: boolean;      // 是不是模拟胶片，
+    @Prop()
+    film_type?: string;         //胶片类型
+    @Prop()
+    desc?: string;              //描述
 }
 
 export const CardSchema = SchemaFactory.createForClass(Card);

@@ -104,4 +104,8 @@ export class CreateFilmDto {
     })
     @IsString()
     film_desc?: string; 
+    @ApiProperty({
+        description:'示例卡片id'
+    })
+    example_card_id:{id: string}[]
 }

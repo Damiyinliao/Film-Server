@@ -34,7 +34,11 @@ export class Film {
     @Prop()
     film_use_case: string;// 胶片使用场景
     @Prop()
-    film_desc: string; // 胶片的事实
+    film_desc: string; // 胶片的描述
+    @Prop({
+        type: [{ id: { type: String } }]
+    })
+    example_card_id: { id: string }[]   // 示例卡片id
 }
 
 export const FilmSchema = SchemaFactory.createForClass(Film);

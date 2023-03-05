@@ -30,4 +30,12 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
         description: '粉丝数'
     })
     fans?: number;
+    @ApiProperty({
+        description:'辨别是要添加RecipesId还是LikesId，一次只能添加一个'
+    })
+    dis?:string;
+    @ApiProperty({
+        description:'携带的RecipesId或者是LikesId'
+    })
+    _id?:string
 }

@@ -12,6 +12,8 @@ import { CardModule } from './card/card.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CameraModule } from './camera/camera.module';
+import { RecipeModule } from './recipe/recipe.module';
 @Module({
   imports: [
     // 停止使用TypeOrm改使用Mongoose
@@ -35,7 +37,9 @@ import { MongooseModule } from '@nestjs/mongoose';
     CardModule,
     UserModule,
     FilmsModule,
-    AuthModule
+    AuthModule,
+    CameraModule,
+    RecipeModule
   ],
   controllers: [AppController],
   providers: [AppService],

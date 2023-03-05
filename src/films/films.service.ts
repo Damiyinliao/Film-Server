@@ -20,17 +20,17 @@ export class FilmsService {
   }
   // 查找全部的胶片类型
   async findAll() {
-    return await this.filmModel.find();
+    return await this.filmModel.find().exec();
   }
   // 查找某一种胶片类型
   async findOne(id: string) {
-    return await this.filmModel.findOne({where:{film_id:id}});
+    return await this.filmModel.findOne({film_id:id});
   }
   // 更新某个胶片类型的信息
   async update(film_id: string, updateFilmDto):Promise<any> {
     return await this.filmModel.updateOne(
       {film_id},
-      {film_id:updateFilmDto.film_id}
+      {example_card_id:updateFilmDto.example_card_id}
     )
   }
   // 删除某一个胶片类型

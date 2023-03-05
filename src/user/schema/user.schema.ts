@@ -15,7 +15,7 @@ export class User {
     @Prop({
         required: true
     })
-    avatar: string;             // 用户头像地址          
+    avatar?: string;             // 用户头像地址          
     @Prop()
     nickname?: string;           // 用户昵称
     @Prop()

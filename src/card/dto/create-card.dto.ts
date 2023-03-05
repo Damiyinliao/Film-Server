@@ -1,13 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsNumber, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsNumber, IsString } from "class-validator";
 
 export class CreateCardDto {
-
-    @ApiProperty({
-        description: 'card的id'
-    })
-    card_id: string;
-
     @ApiProperty({
         required: true,
         description: '卡片所属用户id'
@@ -33,92 +27,86 @@ export class CreateCardDto {
     @ApiProperty({
         description:'胶片模拟名称'
     })
-    @IsString()
-    film_simulation: string;    
+    film_simulation?: string;    
 
     @ApiProperty({
         description: '动态范围'
     })
-    dynamic_range: string;  
+    dynamic_range?: string;  
     
     @ApiProperty({
         description: 'D范围优先级'
     })    
-    drp: string; 
+    drp?: string; 
 
     @ApiProperty({
         description: '高光'
     })
-    @IsString()
-    hightlight: string;         
+    hightlight?: string;         
 
     @ApiProperty({
         description:'阴影'
     })
-    shadow: string;             
+    shadow?: string;             
 
     @ApiProperty({
         description: '色彩'
     })
-    color: string;              
+    color?: string;              
 
     @ApiProperty({
         description:'降噪'
     })
-    @IsString()
-    noise_reduction: string;    
+    noise_reduction?: string;    
 
     @ApiProperty({
         description: '锐度'
     })
-    sharpening: string;         
+    sharpening?: string;         
 
     @ApiProperty({
         description: '清晰度'
     })
-    clarity: string;            
+    clarity?: string;            
 
     @ApiProperty({
         description: '颗粒'
     })
-    @IsString()
-    grain_effect: string;       
+    grain_effect?: string;       
 
     @ApiProperty({
         description: '色彩效果'
     })
-    color_effect: string;       
+    color_effect?: string;       
 
     @ApiProperty({
         description: '彩色FX蓝色'
     })
-    color_effect_blue: string;  
+    color_effect_blue?: string;  
 
     @ApiProperty({
         description: '白平衡'
     })
-    white_balance: string;      
+    white_balance?: string;      
 
     @ApiProperty({
         description: 'iso'
     })
-    iso: number;                
+    iso?: number;                
 
     @ApiProperty({
         description: '曝光补偿(exposure_compensation)'
     })
-    @IsString()
-    ev: string;   
+    ev?: string;   
     @ApiProperty({
         description: '拍摄设备'
     })              
-    @IsString()
-    equipment: string;
+    equipment?: string;
 
     @ApiProperty({
         description: '创建时间'
     })
-    createTime: Date;
+    createTime?: Date;
     
     @ApiProperty({
         description: '图片地址'
@@ -131,4 +119,18 @@ export class CreateCardDto {
     })
     @IsNumber()
     like: number
+    @ApiProperty({
+        required:true,
+        description:'是不是模拟胶片'
+    })
+    @IsBoolean()
+    isSimulation: boolean;
+    @ApiProperty({
+        description:'胶片类型'
+    })
+    film_type?: string;
+    @ApiProperty({
+        description:'描述'
+    })
+    desc?: string;
 }

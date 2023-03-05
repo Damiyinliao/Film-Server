@@ -14,7 +14,7 @@ export class UserService {
     let { username, password } = createUser;
     const saltOrRounds = 10;
     const hashPassword = bcryptjs.hashSync(password, saltOrRounds);     // 密码加密
-    let user = await this.userModel.findOne( { username } )
+    let user = await this.userModel.findOne({ username })
     if (user) {
       throw new HttpException('用户已经存在', HttpStatus.BAD_REQUEST);
     }
@@ -32,23 +32,40 @@ export class UserService {
   }
   // 获取用户信息
   async findOne(username: string): Promise<User> {
-    return await this.userModel.findOne( { username } );
+    return await this.userModel.findOne({ username });
   }
   // 返回用户信息
   async getUserInfo(username: string): Promise<any> {
-    let user = await this.userModel.findOne({username});
+    let user = await this.userModel.findOne({ username });
     user.password = null;
-    console.log(user);
     return user;
   }
   // 更新账户信息
   async update(id: string, updateUserDto: UpdateUserDto): Promise<any> {
-    console.log(updateUserDto);
+    if (updateUserDto.dis) {
+      if (updateUserDto.dis == 'recipe') {
+        delete updateUserDto.dis;
+        //往数组里添加数据RecipeId[]
+        return await this.userModel.findOneAndUpdate(
+          { username: id },
+          { $push: { RecipesId: updateUserDto.RecipesId } },
+          { new: true, useFindAndModify: false }
+        )
+      } else {
+        delete updateUserDto.dis;
+        //往数组里添加数据LikesId[]
+        return await this.userModel.findOneAndUpdate(
+          { username: id },
+          { $push: { LikesId: updateUserDto.LikesId } },
+          { new: true, useFindAndModify: false }
+        )
+      }
 
-    return await this.userModel.findOneAndUpdate({ username: id }, updateUserDto, {new: true}).exec()
+    }
+    return await this.userModel.findOneAndUpdate({ username: id }, updateUserDto, { new: true }).exec()
   }
 
   async remove(id: string): Promise<any> {
-    return await this.userModel.deleteOne({_id: id});
+    return await this.userModel.deleteOne({ _id: id });
   }
 }
